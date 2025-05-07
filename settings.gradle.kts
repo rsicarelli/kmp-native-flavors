@@ -1,4 +1,4 @@
-rootProject.name = "kmp-native-flavor"
+rootProject.name = "kmp-native-flavors"
 
 pluginManagement {
     repositories {

@@ -1,4 +1,4 @@
-package com.rsicarelli.kmp.native.flavor.tasks
+package com.rsicarelli.kmp.native.flavors.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property
@@ -21,7 +21,7 @@ import javax.inject.Inject
  */
 @CacheableTask
 @DisableCachingByDefault(because = "Dynamic task creation makes caching complex")
-abstract class KmpNativeBuildFlavorTask : DefaultTask() {
+abstract class KmpNativeBuildFlavorsTask : DefaultTask() {
 
     /**
      * The name of the flavor being built.

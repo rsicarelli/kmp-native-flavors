@@ -1,4 +1,4 @@
-package com.rsicarelli.kmp.native.flavor
+package com.rsicarelli.kmp.native.flavors
 
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
@@ -14,7 +14,7 @@ import javax.inject.Inject
 /**
  * Extension for configuring KMP native flavors.
  */
-open class KmpNativeFlavorExtension @Inject constructor(private val objectFactory: ObjectFactory) {
+open class KmpNativeFlavorsExtension @Inject constructor(private val objectFactory: ObjectFactory) {
 
     /**
      * Container for flavor configurations.

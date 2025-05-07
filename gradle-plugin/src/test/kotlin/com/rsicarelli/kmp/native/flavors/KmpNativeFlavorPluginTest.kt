@@ -1,4 +1,4 @@
-package com.rsicarelli.kmp.native.flavor
+package com.rsicarelli.kmp.native.flavors
 
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
@@ -9,7 +9,7 @@ import java.io.File
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class KmpNativeFlavorPluginTest {
+class KmpNativeFlavorsPluginTest {
 
     @Rule
     @JvmField
@@ -37,7 +37,7 @@ class KmpNativeFlavorPluginTest {
         buildFile.writeText("""
             plugins {
                 kotlin("multiplatform") version "2.0.21"
-                id("com.rsicarelli.kmp-native-flavor")
+                id("com.rsicarelli.kmp-native-flavors")
             }
             
             repositories {
@@ -63,7 +63,7 @@ class KmpNativeFlavorPluginTest {
                 }
             }
             
-            kmpNativeFlavor {
+            kmpNativeFlavors {
                 flavors {
                     register("production") {
                         targets = setOf("iosArm64")

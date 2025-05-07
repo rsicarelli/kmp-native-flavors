@@ -22,7 +22,6 @@ dependencies {
     implementation(libs.kotlin.gradlePluginApi)
 
     testImplementation(libs.kotlin.test)
-    testImplementation(libs.gradle.testKit)
 }
 
 kotlin {
@@ -38,9 +37,9 @@ tasks.withType<KotlinCompile>().configureEach {
 
 gradlePlugin {
     plugins {
-        create("kmpNativeFlavor") {
-            id = "com.rsicarelli.kmp-native-flavor"
-            implementationClass = "com.rsicarelli.kmp.native.flavor.KmpNativeFlavorPlugin"
+        create("kmpNativeFlavors") {
+            id = "com.rsicarelli.kmp-native-flavors"
+            implementationClass = "com.rsicarelli.kmp.native.flavors.KmpNativeFlavorsPlugin"
         }
     }
 }

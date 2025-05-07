@@ -34,7 +34,7 @@ pluginManagement {
 // build.gradle.kts
 plugins {
     kotlin("multiplatform") version "2.1.20"
-    id("com.rsicarelli.kmp-native-flavor") version "1.0.0-SNAPSHOT"
+    id("com.rsicarelli.kmp-native-flavors") version "1.0.0-SNAPSHOT"
 }
 ```
 

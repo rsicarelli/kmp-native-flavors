@@ -1,4 +1,4 @@
-package com.rsicarelli.kmp.native.flavor
+package com.rsicarelli.kmp.native.flavors
 
 import org.gradle.api.Project
 import java.io.File
