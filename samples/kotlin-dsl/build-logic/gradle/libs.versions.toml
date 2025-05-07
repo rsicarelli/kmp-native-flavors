@@ -1,0 +1,21 @@
+[versions]
+# Gradle and Kotlin versions
+kotlin = "2.0.21"
+gradle = "8.14"
+
+# Library versions
+kotlinGradlePlugin = "2.0.21"
+
+[libraries]
+# Kotlin libraries
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-gradlePluginApi = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin-api", version.ref = "kotlin" }
+
+# Testing
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+gradle-testKit = { module = "org.gradle:gradle-test-kit", version.ref = "gradle" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
