@@ -41,6 +41,12 @@ gradlePlugin {
             id = "com.rsicarelli.kmp-native-flavors"
             implementationClass = "com.rsicarelli.kmp.native.flavors.KmpNativeFlavorsPlugin"
         }
+        
+        // Registrando o novo plugin para iOS Framework
+        create("kmpIosFramework") {
+            id = "com.rsicarelli.kmp-ios-framework"
+            implementationClass = "com.rsicarelli.kmp.native.flavors.ios.KmpIosFrameworkPlugin"
+        }
     }
 }
 

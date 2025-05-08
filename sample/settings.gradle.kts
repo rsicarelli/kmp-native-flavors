@@ -1,17 +1,17 @@
-rootProject.name = "sample"
+rootProject.name = "plain-gradle"
 
 pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
         mavenCentral()
+        mavenLocal() // For local plugin development testing
     }
-
+    
     // Include the main plugin so we can use it in this sample
-    includeBuild("..")
+    includeBuild("..") // Updated path to point to the root project
 }
 
-@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositories {
         google()
@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 // Include the shared module
 include(":shared")
+// Include the new ios-interop module
+include(":ios-interop")
