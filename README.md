@@ -7,6 +7,7 @@ A Gradle plugin for Kotlin Multiplatform projects that adds support for building
 - Define multiple flavors for your KMP native targets
 - Configure different targets and build types for each flavor
 - Automatically generate Gradle tasks for each flavor
+- **Dynamically configure targets and source sets from flavor definitions**
 - Support for environment detection (CI vs local)
 - Configuration overrides via local.properties
 - Full compatibility with Gradle Configuration Cache
@@ -43,23 +44,58 @@ plugins {
 ### Basic Configuration
 
 ```kotlin
-kmpNativeFlavor {
+kmpNativeFlavors {
     flavors {
         register("production") {
-            targets = setOf("iosArm64")
-            buildType = org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeBuildType.RELEASE
+            targets("iosArm64")
+            buildType(NativeBuildType.RELEASE)
         }
         register("development") {
-            targets = setOf("iosSimulatorArm64") 
-            buildType = org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeBuildType.DEBUG
+            targets("iosSimulatorArm64") 
+            buildType(NativeBuildType.DEBUG)
         }
         register("qa") {
-            targets = setOf("iosArm64", "iosSimulatorArm64")
-            buildType = "debug" // String version also works
+            targets("iosArm64", "iosSimulatorArm64")
+            buildType("debug") // String version also works
         }
     }
 }
 ```
+
+### Dynamic Target Configuration
+
+Instead of manually configuring your KMP targets, you can now use the `configureFromFlavors()` extension to automatically set up targets and source sets based on your flavor definitions:
+
+```kotlin
+kotlin {
+    // This will automatically set up all targets defined in your flavors
+    configureFromFlavors()
+    
+    // No need to manually call iosArm64(), iosSimulatorArm64(), etc.
+    // No need to manually configure source sets
+    
+    // You can still customize other aspects of your multiplatform configuration
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+            }
+        }
+    }
+}
+
+kmpNativeFlavors {
+    flavors {
+        // Your flavor definitions here
+    }
+}
+```
+
+This approach offers several benefits:
+- **Reduced boilerplate**: No need to duplicate target declarations
+- **Automatic source set configuration**: Source sets are automatically set up with appropriate dependencies
+- **Single source of truth**: Your flavor definitions drive the entire configuration
+- **More maintainable**: Adding or removing targets only requires changing your flavor definitions
 
 ### Generated Tasks
 

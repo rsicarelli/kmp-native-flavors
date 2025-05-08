@@ -14,25 +14,11 @@ plugins {
 
 // Configure Kotlin Multiplatform
 kotlin {
-    // Configure iOS targets
-    iosArm64()
-    iosSimulatorArm64()
+    // Use the new extension to dynamically configure targets from flavors
+    configureFromFlavors()
     
-    // Configure iOS source sets
-    sourceSets {
-        getByName("iosArm64Main") {
-            dependsOn(getByName("iosMain"))
-        }
-        getByName("iosSimulatorArm64Main") {
-            dependsOn(getByName("iosMain"))
-        }
-        getByName("iosArm64Test") {
-            dependsOn(getByName("iosTest"))
-        }
-        getByName("iosSimulatorArm64Test") {
-            dependsOn(getByName("iosTest"))
-        }
-    }
+    // No need to manually configure targets or source sets anymore!
+    // They're automatically configured based on the flavor targets.
 }
 
 // Configure KMP native flavors

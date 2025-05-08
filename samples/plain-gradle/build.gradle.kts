@@ -1,67 +1,15 @@
+import com.rsicarelli.kmp.native.flavors.configureFromFlavors
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 plugins {
-    kotlin("multiplatform") version "2.0.0"
+    kotlin("multiplatform") version "2.0.0" apply false
     id("com.rsicarelli.kmp-native-flavors")
 }
 
 group = "com.rsicarelli.sample"
 version = "1.0-SNAPSHOT"
 
-kotlin {
-    // Target iOS platforms
-    iosArm64()
-    iosSimulatorArm64()
-    
-    // Configure Kotlin/Native targets
-    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-        binaries.all {
-            // The plugin will override these settings based on the flavor configuration
-            freeCompilerArgs += listOf("-Xruntime-logs=gc=info")
-        }
-    }
-    
-    sourceSets {
-        val commonMain by getting {
-            dependencies {
-                // Common dependencies
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-            }
-        }
-        
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-        
-        val iosMain by creating {
-            dependsOn(commonMain)
-        }
-        
-        val iosArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        
-        val iosTest by creating {
-            dependsOn(commonTest)
-        }
-        
-        val iosArm64Test by getting {
-            dependsOn(iosTest)
-        }
-        
-        val iosSimulatorArm64Test by getting {
-            dependsOn(iosTest)
-        }
-    }
-}
-
-// Configure native flavors
+// Configure native flavors ANTES da configuração do Kotlin
 kmpNativeFlavors {
     flavors {
         // Development flavor: uses the simulator target with debug build type

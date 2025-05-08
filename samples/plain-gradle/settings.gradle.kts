@@ -1,4 +1,4 @@
-rootProject.name = "plain-gradle-sample"
+rootProject.name = "plain-gradle"
 
 pluginManagement {
     repositories {
@@ -18,3 +18,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+// Include the shared module
+include(":shared")

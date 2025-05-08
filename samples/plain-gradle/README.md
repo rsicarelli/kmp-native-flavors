@@ -20,6 +20,23 @@ plugins {
     id("com.rsicarelli.kmp-native-flavors")
 }
 
+kotlin {
+    // Use the new extension to dynamically configure targets from flavors
+    configureFromFlavors()
+    
+    // No need to manually configure targets or source sets anymore!
+    // They're automatically configured based on your flavor definitions.
+    
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                // You can still define your dependencies normally
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+            }
+        }
+    }
+}
+
 // Configure native flavors
 kmpNativeFlavors {
     flavors {
@@ -40,6 +57,16 @@ kmpNativeFlavors {
     }
 }
 ```
+
+## Dynamic Target Configuration
+
+The key feature demonstrated in this sample is the usage of `configureFromFlavors()` extension. This automatically:
+
+1. Configures all necessary targets based on your flavor definitions
+2. Creates and configures proper source set hierarchy and dependencies
+3. Eliminates the need to manually maintain target declarations and source set configurations
+
+This approach ensures that your build configuration stays DRY (Don't Repeat Yourself) and is easier to maintain as you add or remove targets.
 
 ## Available Tasks
 

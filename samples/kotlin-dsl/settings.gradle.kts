@@ -1,4 +1,4 @@
-rootProject.name = "kotlin-dsl-sample"
+rootProject.name = "kotlin-dsl"
 
 pluginManagement {
     repositories {
@@ -7,7 +7,7 @@ pluginManagement {
         google()
         mavenCentral()
     }
-    
+
     // Include the main plugin
     includeBuild("../..")
 }
@@ -18,3 +18,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+// Include the shared module
+include(":shared")
