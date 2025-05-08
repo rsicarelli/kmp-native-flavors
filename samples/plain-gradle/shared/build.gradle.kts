@@ -2,11 +2,10 @@ import com.rsicarelli.kmp.native.flavors.configureFromFlavors
 
 plugins {
     kotlin("multiplatform")
-    id("com.rsicarelli.kmp-native-flavors")
 }
 
 kotlin {
-    // Use the extension to dynamically configure targets from flavors
+    // Usa a extensão para configurar automaticamente os targets a partir das flavors definidas no root
     configureFromFlavors()
 
     sourceSets {
@@ -19,8 +18,5 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-
-        // Note: You no longer need to manually configure your platform-specific source sets
-        // They are automatically configured by the configureFromFlavors() extension
     }
 }

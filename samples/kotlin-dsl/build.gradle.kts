@@ -9,10 +9,7 @@ plugins {
 group = "com.rsicarelli.sample"
 version = "1.0-SNAPSHOT"
 
-// Configure flavors in a separate configuration block to improve readability
-// This approach organizes the build script in a way similar to build-logic
-// but keeps everything in a single file for simplicity
-configure<KmpNativeFlavorsExtension> {
+kmpNativeFlavors {
     flavors {
         // Development flavor
         register("development") {

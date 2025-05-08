@@ -6,9 +6,9 @@ plugins {
 
 // Set up Kotlin Multiplatform
 kotlin {
-//    configureFromFlavors()
+    configureFromFlavors()
     applyDefaultHierarchyTemplate()
-    
+
     sourceSets {
         commonMain.dependencies {
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")

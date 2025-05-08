@@ -1,5 +1,6 @@
 package com.rsicarelli.kmp.native.flavors
 
+import com.rsicarelli.kmp.native.flavors.KmpNativeFlavorsPlugin.Companion.SHARED_FLAVOR_CONFIG_KEY
 import org.gradle.api.GradleException
 import org.gradle.api.logging.Logger
 import org.jetbrains.kotlin.gradle.ExternalKotlinTargetApi
@@ -22,9 +23,9 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.external.project
  */
 @OptIn(ExternalKotlinTargetApi::class)
 fun KotlinMultiplatformExtension.configureFromFlavors() {
-    // Get the flavor extension
-    val extension = project.extensions.findByType(KmpNativeFlavorsExtension::class.java)
-        ?: throw GradleException("KMP Native Flavors extension not found. Make sure you've applied the plugin.")
+    // First try to get extension from the root project
+    val extension = findExtension()
+        ?: throw GradleException("KMP Native Flavors extension not found. Make sure you've applied the plugin in the root project or this project.")
 
     // Collect all unique targets from all flavors
     val allTargets = mutableSetOf<String>()
@@ -36,6 +37,20 @@ fun KotlinMultiplatformExtension.configureFromFlavors() {
 
     // Configure each target
     configureTargets(allTargets, project.logger)
+}
+
+/**
+ * Finds the KmpNativeFlavorsExtension from either the root project or the current project.
+ */
+@OptIn(ExternalKotlinTargetApi::class)
+private fun KotlinMultiplatformExtension.findExtension(): KmpNativeFlavorsExtension? {
+    // Try to get from root project first
+    if (project.rootProject.extensions.extraProperties.has(SHARED_FLAVOR_CONFIG_KEY)) {
+        return project.rootProject.extensions.extraProperties.get(SHARED_FLAVOR_CONFIG_KEY) as KmpNativeFlavorsExtension
+    }
+    
+    // Then try from current project
+    return project.extensions.findByType(KmpNativeFlavorsExtension::class.java)
 }
 
 /**
