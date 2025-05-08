@@ -1,17 +1,17 @@
-rootProject.name = "kotlin-dsl"
+rootProject.name = "sample"
 
 pluginManagement {
     repositories {
-        mavenLocal() // For local plugin development testing
         gradlePluginPortal()
         google()
         mavenCentral()
     }
 
-    // Include the main plugin
-    includeBuild("../..")
+    // Include the main plugin so we can use it in this sample
+    includeBuild("..")
 }
 
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositories {
         google()

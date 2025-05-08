@@ -15,5 +15,4 @@ dependencyResolutionManagement {
     }
 }
 include(":gradle-plugin")
-includeBuild("samples/plain-gradle")
-includeBuild("samples/kotlin-dsl")
+includeBuild("sample")
